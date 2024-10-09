@@ -1,6 +1,8 @@
 package io.tintinapp.learning;
 
-import io.tintinapp.learning.entity.Person;
+import io.tintinapp.learning.domain.infra.PersonnageRepository;
+import io.tintinapp.learning.domain.infra.entity.Accessoire;
+import io.tintinapp.learning.domain.infra.entity.Personnage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,30 +18,35 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @Transactional
-public class PersonServiceTest {
+public class PersonnageServiceTest {
 
 	@Autowired
-	private PersonService personService;
+	private PersonnageService personnageService;
 
 	@Autowired
-	private PersonRepository personRepository;
+	private PersonnageRepository personnageRepository;
 
 	@BeforeEach
 	public void setUp() {
 		// Add Tintin and his friends to the in-memory database
-		personRepository.save(new Person("Tintin"));
-		personRepository.save(new Person("Milou"));
+		Accessoire besace = new Accessoire();
+		besace.setName("besace");
+		
+		Personnage tintin = new Personnage("Tintin");
+		tintin.setAccessoires(List.of(besace));
+		personnageRepository.save(tintin);
+		personnageRepository.save(new Personnage("Milou"));
 	}
 
 	@Test
 	public void tintinScenario() {
 		// Given: I am Tintin
-		Person tintin = personRepository.findByName("Tintin").orElseThrow();
+		Personnage tintin = personnageRepository.findByName("Tintin").orElseThrow();
 
 		// When: I retrieve all my friends
-		List<Person> friends = personService.getFriendsOfTintin();
+		List<Personnage> friends = personnageService.getFriendsOfTintin();
 
 		// Then: Milou is returned
-		assertThat(friends).extracting(Person::getName).contains("Milou");
+		assertThat(friends).extracting(Personnage::getName).contains("Milou");
 	}
 }
