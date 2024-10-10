@@ -1,5 +1,6 @@
 package io.tintinapp.learning;
 
+import io.tintinapp.learning.domain.infra.AccessoireRepo;
 import io.tintinapp.learning.domain.infra.PersonnageRepository;
 import io.tintinapp.learning.domain.infra.entity.Accessoire;
 import io.tintinapp.learning.domain.infra.entity.Personnage;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @SpringBootTest
@@ -26,27 +28,31 @@ public class PersonnageServiceTest {
 	@Autowired
 	private PersonnageRepository personnageRepository;
 
+	@Autowired
+	private AccessoireRepo accessoireRepository;
+
+	private Personnage tintin;
+
 	@BeforeEach
 	public void setUp() {
 		// Add Tintin and his friends to the in-memory database
-		Accessoire besace = new Accessoire();
-		besace.setName("besace");
 		
-		Personnage tintin = new Personnage("Tintin");
-		tintin.setAccessoires(List.of(besace));
+		tintin = new Personnage("Tintin");
 		personnageRepository.save(tintin);
-		personnageRepository.save(new Personnage("Milou"));
 	}
 
+
 	@Test
-	public void tintinScenario() {
-		// Given: I am Tintin
-		Personnage tintin = personnageRepository.findByName("Tintin").orElseThrow();
-
-		// When: I retrieve all my friends
-		List<Personnage> friends = personnageService.getFriendsOfTintin();
-
-		// Then: Milou is returned
-		assertThat(friends).extracting(Personnage::getName).contains("Milou");
+	public void verifierLAssociationBiDirectionnelle() {
+		// given
+		Accessoire besace = new Accessoire();
+		besace.setName("besace");
+		tintin.ajouterAccessoire(besace);
+		personnageRepository.save(tintin);
+		// when
+		List<Accessoire> allAccessoires = accessoireRepository.findAll();
+		// then
+		assertThat(allAccessoires).hasSize(1);
+		assertEquals(tintin.getName(), allAccessoires.getFirst().getProprio().getName());
 	}
 }

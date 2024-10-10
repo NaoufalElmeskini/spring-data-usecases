@@ -2,7 +2,7 @@ package io.tintinapp.learning;
 
 
 
-import io.tintinapp.learning.domain.infra.PersonnageRepository;
+import io.tintinapp.learning.domain.infra.AccessoireRepo;
 import io.tintinapp.learning.domain.infra.entity.Personnage;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +11,9 @@ import java.util.List;
 @Service
 public class PersonnageService {
 
-	private final PersonnageRepository personnageRepository;
+	private final AccessoireRepo personnageRepository;
 
-	public PersonnageService(PersonnageRepository personnageRepository) {
+	public PersonnageService(AccessoireRepo personnageRepository) {
 		this.personnageRepository = personnageRepository;
 	}
 

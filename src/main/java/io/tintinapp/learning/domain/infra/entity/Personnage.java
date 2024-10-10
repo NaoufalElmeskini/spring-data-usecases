@@ -1,6 +1,7 @@
 package io.tintinapp.learning.domain.infra.entity;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -25,11 +26,17 @@ public class Personnage {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "proprio")
-    private List<Accessoire> accessoires;
+    private List<Accessoire> accessoires = new ArrayList();
 
 
     public Personnage(String name) {
         this.name = name;
+    }
+
+
+    public void ajouterAccessoire(Accessoire accessoire) {
+        accessoires.add(accessoire);
+        accessoire.setProprio(this);
     }
 
 }
