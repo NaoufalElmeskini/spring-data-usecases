@@ -5,6 +5,7 @@ import io.tintinapp.learning.domain.infra.PersonnageRepository;
 import io.tintinapp.learning.domain.infra.entity.Accessoire;
 import io.tintinapp.learning.domain.infra.entity.Personnage;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,18 +36,18 @@ public class PersonnageServiceTest {
 
 	@BeforeEach
 	public void setUp() {
-		// Add Tintin and his friends to the in-memory database
-		
-		tintin = new Personnage("Tintin");
+		tintin = Personnage.builder()
+			.name("Tintin").build();
 		personnageRepository.save(tintin);
 	}
 
 
 	@Test
+	@DisplayName("step 1 : relation bi-directionnelle Personnage-accessoire")
 	public void verifierLAssociationBiDirectionnelle() {
 		// given
-		Accessoire besace = new Accessoire();
-		besace.setName("besace");
+		Accessoire besace = Accessoire.builder()
+			.name("besace").build();
 		tintin.ajouterAccessoire(besace);
 		personnageRepository.save(tintin);
 		// when
@@ -54,5 +55,15 @@ public class PersonnageServiceTest {
 		// then
 		assertThat(allAccessoires).hasSize(1);
 		assertEquals(tintin.getName(), allAccessoires.getFirst().getProprio().getName());
+	}
+
+
+	@Test
+	@DisplayName("step 2 : constater probleme N+1")
+	public void verifierXXX() {
+		// given : j'ai 2 personnage ayant chacun 1 accessoires
+		
+		// when : je recupere tous les personnages
+		// then : je constate 1+2 (=3) requetes sql  
 	}
 }

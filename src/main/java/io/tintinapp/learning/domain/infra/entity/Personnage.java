@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +19,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Personnage {
 
     @Id
@@ -26,7 +30,7 @@ public class Personnage {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "proprio")
-    private List<Accessoire> accessoires = new ArrayList();
+    private List<Accessoire> accessoires;
 
 
     public Personnage(String name) {
@@ -35,6 +39,10 @@ public class Personnage {
 
 
     public void ajouterAccessoire(Accessoire accessoire) {
+        if (accessoires == null) {
+            accessoires = new ArrayList();
+        }
+        
         accessoires.add(accessoire);
         accessoire.setProprio(this);
     }
