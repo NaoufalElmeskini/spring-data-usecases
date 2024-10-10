@@ -25,7 +25,7 @@ public class Accessoire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-	private String name;
+	private String nom;
 	private String couleur;
 
 	@ManyToOne

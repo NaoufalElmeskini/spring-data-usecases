@@ -10,5 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface AccessoireRepo extends JpaRepository<Accessoire, Long> {
-    Optional<Accessoire> findByName(String name);
+    Optional<Accessoire> findByNom(String name);
 }

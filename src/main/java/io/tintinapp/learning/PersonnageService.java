@@ -3,22 +3,22 @@ package io.tintinapp.learning;
 
 
 import io.tintinapp.learning.domain.infra.AccessoireRepo;
+import io.tintinapp.learning.domain.infra.PersonnageRepository;
+import io.tintinapp.learning.domain.infra.entity.Accessoire;
 import io.tintinapp.learning.domain.infra.entity.Personnage;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PersonnageService {
 
-	private final AccessoireRepo personnageRepository;
+	private final PersonnageRepository personnageRepository;
 
-	public PersonnageService(AccessoireRepo personnageRepository) {
-		this.personnageRepository = personnageRepository;
-	}
-
-	public List<Personnage> getFriendsOfTintin() {
-		// Here we assume Tintin has a specific set of friends stored in the DB.
-		return personnageRepository.findAll();
-	}
+    public List<Personnage> getAll() {
+		return personnageRepository.findAll();		
+    }
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,16 +28,14 @@ public class Personnage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String nom;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proprio")
+    @OneToMany(
+        cascade = CascadeType.ALL,
+        fetch = FetchType.LAZY,
+        mappedBy = "proprio"
+        )
     private List<Accessoire> accessoires;
-
-
-    public Personnage(String name) {
-        this.name = name;
-    }
-
 
     public void ajouterAccessoire(Accessoire accessoire) {
         if (accessoires == null) {
