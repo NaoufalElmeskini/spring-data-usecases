@@ -1,9 +1,10 @@
-package io.tintinapp.learning.domain.infra;
+package io.tintinapp.learning.basic.domain.infra;
 
 
-import io.tintinapp.learning.domain.infra.entity.Personnage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import io.tintinapp.learning.basic.domain.infra.entity.Personnage;
 
 import java.util.Optional;
 

@@ -1,9 +1,4 @@
-package io.tintinapp.learning;
-
-import io.tintinapp.learning.domain.infra.AccessoireRepo;
-import io.tintinapp.learning.domain.infra.PersonnageRepository;
-import io.tintinapp.learning.domain.infra.entity.Accessoire;
-import io.tintinapp.learning.domain.infra.entity.Personnage;
+package io.tintinapp.learning.basic;
 
 import org.hibernate.query.results.Builders;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.transaction.annotation.Transactional;
+
+import io.tintinapp.learning.MesBuilders;
+import io.tintinapp.learning.basic.domain.infra.AccessoireRepo;
+import io.tintinapp.learning.basic.domain.infra.PersonnageRepository;
+import io.tintinapp.learning.basic.domain.infra.PersonnageService;
+import io.tintinapp.learning.basic.domain.infra.entity.Accessoire;
+import io.tintinapp.learning.basic.domain.infra.entity.Personnage;
 
 import java.util.List;
 

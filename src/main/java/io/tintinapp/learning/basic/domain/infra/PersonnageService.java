@@ -1,14 +1,13 @@
-package io.tintinapp.learning;
+package io.tintinapp.learning.basic.domain.infra;
 
 
 
-import io.tintinapp.learning.domain.infra.AccessoireRepo;
-import io.tintinapp.learning.domain.infra.PersonnageRepository;
-import io.tintinapp.learning.domain.infra.entity.Accessoire;
-import io.tintinapp.learning.domain.infra.entity.Personnage;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
+
+import io.tintinapp.learning.basic.domain.infra.entity.Accessoire;
+import io.tintinapp.learning.basic.domain.infra.entity.Personnage;
 
 import java.util.List;
 

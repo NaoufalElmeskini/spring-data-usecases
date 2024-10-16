@@ -1,7 +1,7 @@
 package io.tintinapp.learning;
 
-import io.tintinapp.learning.domain.infra.entity.Accessoire;
-import io.tintinapp.learning.domain.infra.entity.Personnage;
+import io.tintinapp.learning.basic.domain.infra.entity.Accessoire;
+import io.tintinapp.learning.basic.domain.infra.entity.Personnage;
 
 public class MesBuilders {
 

@@ -1,4 +1,4 @@
-package io.tintinapp.learning.domain.infra.entity;
+package io.tintinapp.learning.basic.domain.infra.entity;
 
 import org.hibernate.annotations.ManyToAny;
 
