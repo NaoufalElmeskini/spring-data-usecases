@@ -1,9 +1,9 @@
-package io.tintinapp.learning.basic.domain.infra.entity;
+package io.tintinapp.learning.connection;
 
 import org.hibernate.annotations.ManyToAny;
 
+import io.tintinapp.learning.basic.domain.infra.entity.Personnage;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,16 +20,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Builder
-public class Accessoire {
+public class Pays {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 	private String nom;
-	private String couleur;
-
-	@ManyToOne (fetch = FetchType.EAGER)
-	private Personnage proprio;
 
 }
