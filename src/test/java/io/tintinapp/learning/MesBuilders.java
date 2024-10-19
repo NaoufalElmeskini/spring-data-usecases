@@ -13,7 +13,8 @@ public class MesBuilders {
 
     public static Personnage unPersonnage(String nom, Accessoire accessoire) {
         Personnage personnage = Personnage.builder()
-                .build();
+            .nom(nom)
+            .build();
         personnage.ajouterAccessoire(accessoire);
         return personnage;
     }
